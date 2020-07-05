@@ -16,5 +16,6 @@
         #else
             <p><a href="/login/auth">Login</a></p>
         #end
+        <p><a href="/test">Test</a></p>
     </body>
 </html>

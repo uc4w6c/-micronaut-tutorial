@@ -18,6 +18,7 @@ import java.util.ArrayList
 class AuthenticationProviderUserPassword : AuthenticationProvider {
 
     override fun authenticate(httpRequest: HttpRequest<*>?, authenticationRequest: AuthenticationRequest<*, *>): Publisher<AuthenticationResponse> {
+        println("start authentication")
         return Flowable.create<AuthenticationResponse>({ emitter ->
             if (authenticationRequest.getIdentity().equals("sherlock") && authenticationRequest.getSecret().equals("password")) {
                 val userDetails = UserDetails(authenticationRequest.getIdentity() as String, ArrayList())

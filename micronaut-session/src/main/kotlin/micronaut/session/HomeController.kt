@@ -11,6 +11,7 @@ import java.security.Principal
 import java.util.HashMap
 
 @Secured(SecurityRule.IS_ANONYMOUS)
+// @Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller
 class HomeController {
 
@@ -24,5 +25,11 @@ class HomeController {
             data["username"] = principal.name
         }
         return data
+    }
+
+    @Produces(MediaType.TEXT_HTML)
+    @Get("/test")
+    @View("test")
+    internal fun test(): Unit {
     }
 }
