@@ -1,4 +1,4 @@
-package micronaut.session
+package micronaut.session.controller
 
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
@@ -13,7 +13,7 @@ import java.util.HashMap
 
 @Secured(SecurityRule.IS_ANONYMOUS)
 @Controller("/login")
-class LoginAuthController {
+public class LoginAuthController {
 
     @Produces(MediaType.TEXT_HTML)
     @Get("/auth")

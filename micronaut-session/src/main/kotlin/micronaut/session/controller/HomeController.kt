@@ -1,4 +1,4 @@
-package micronaut.session
+package micronaut.session.controller
 
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
@@ -10,13 +10,13 @@ import io.micronaut.views.View
 import java.security.Principal
 import java.util.HashMap
 
-@Secured(SecurityRule.IS_ANONYMOUS)
-// @Secured(SecurityRule.IS_AUTHENTICATED)
+// @Secured(SecurityRule.IS_ANONYMOUS)
+@Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller
 class HomeController {
 
     @Produces(MediaType.TEXT_HTML)
-    @Get
+    @Get("/")
     @View("home")
     internal fun index(principal: Principal?): Map<String, Any> {
         val data = HashMap<String, Any>()

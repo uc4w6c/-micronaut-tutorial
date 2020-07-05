@@ -6,3 +6,7 @@ micronaut:
     redirect:
       login-success: /
       login-failure: /login/authFailed
+    endpoints:
+      login:
+        enabled: true
+        path: /login/auth
