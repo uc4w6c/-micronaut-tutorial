@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: micronaut.session
+testFramework: spock
+sourceLanguage: kotlin
+buildTool: gradle
+features: [app-name, docker, file-watch, file-watch-osx, gradle, http-client, kotlin, kotlin-application, logback, netty-server, readme, shade, spock, yaml]
