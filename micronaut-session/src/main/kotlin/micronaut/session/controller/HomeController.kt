@@ -7,13 +7,14 @@ import io.micronaut.http.annotation.Produces
 import io.micronaut.security.annotation.Secured
 import io.micronaut.security.rules.SecurityRule
 import io.micronaut.views.View
+import micronaut.session.service.TestService
 import java.security.Principal
 import java.util.HashMap
 
 // @Secured(SecurityRule.IS_ANONYMOUS)
 @Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller
-class HomeController {
+class HomeController(private val testService: TestService) {
 
     @Produces(MediaType.TEXT_HTML)
     @Get("/")
@@ -31,5 +32,6 @@ class HomeController {
     @Get("/test")
     @View("test")
     internal fun test(): Unit {
+        println(testService.excute())
     }
 }

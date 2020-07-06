@@ -1,5 +1,11 @@
 package micronaut.session.service
 
-class TestService {
+import micronaut.session.domain.Book
+import javax.inject.Singleton
 
+@Singleton
+class TestService {
+    fun excute(): Book {
+        return Book(1);
+    }
 }
