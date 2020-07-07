@@ -33,9 +33,16 @@ dependencies {
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-http-server-netty")
     implementation("io.micronaut:micronaut-http-client")
-    annotationProcessor("io.micronaut.security:micronaut-security-annotations")
+    implementation("io.micronaut.security:micronaut-security-annotations")
     implementation("io.micronaut.security:micronaut-security-session")
     implementation("io.micronaut.views:micronaut-views-velocity")
+    implementation("org.seasar.doma:doma:2.29.0")
+    // annotationProcessor("org.seasar.doma:doma-processor:2.37.0")
+    // implementation("org.seasar.doma:doma-core:2.37.0")
+    implementation("org.springframework.security:spring-security-crypto:5.3.3.RELEASE")
+    kapt("org.seasar.doma:doma:2.29.0")
+    runtimeOnly("mysql:mysql-connector-java:8.0.20")
+
     developmentOnly("io.micronaut:micronaut-runtime-osx:$micronautVersion")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -69,19 +76,32 @@ compileKotlin {
         //Will retain parameter names for Java reflection
         javaParameters = true
     }
+    dependsOn {
+        copyDomaResources
+    }
 }
+
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = '1.8'
         javaParameters = true
     }
 }
+task copyDomaResources(type: Sync)  {
+    from sourceSets.main.resources.srcDirs
+    into compileKotlin.destinationDir
+    include 'doma.compile.config'
+    include 'META-INF/**/*.sql'
+    include 'META-INF/**/*.script'
+}
+
 kapt {
     arguments {
         arg("micronaut.processing.incremental", true)
         arg("micronaut.processing.annotations", "micronaut.session.*")
         arg("micronaut.processing.group", "micronaut.session")
         arg("micronaut.processing.module", "micronautSession")
+        arg("doma.resources.dir", compileKotlin.destinationDir)
     }
 }
 
