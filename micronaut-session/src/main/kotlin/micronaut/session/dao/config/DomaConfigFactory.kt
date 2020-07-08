@@ -12,12 +12,12 @@ import javax.sql.DataSource
 class DomaConfigFactory {
 
     @Singleton
-    fun localTransactionDataSource(dataSource: DataSource): LocalTransactionDataSource {
+    internal fun localTransactionDataSource(dataSource: DataSource): LocalTransactionDataSource {
         return LocalTransactionDataSource(dataSource)
     }
 
     @Singleton
-    fun localTransactionManager(dataSource: LocalTransactionDataSource): LocalTransactionManager {
+    internal fun localTransactionManager(dataSource: LocalTransactionDataSource): LocalTransactionManager {
         return LocalTransactionManager(
                 dataSource.getLocalTransaction(ConfigSupport.defaultJdbcLogger))
     }

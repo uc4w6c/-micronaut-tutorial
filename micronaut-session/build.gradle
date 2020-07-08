@@ -5,6 +5,7 @@ plugins {
     id "groovy"
     id "com.github.johnrengelman.shadow" version "6.0.0"
     id "application"
+    id 'org.seasar.doma.compile' version '1.1.0'
 }
 
 version "0.1"
@@ -36,11 +37,14 @@ dependencies {
     implementation("io.micronaut.security:micronaut-security-annotations")
     implementation("io.micronaut.security:micronaut-security-session")
     implementation("io.micronaut.views:micronaut-views-velocity")
-    implementation("org.seasar.doma:doma:2.29.0")
-    // annotationProcessor("org.seasar.doma:doma-processor:2.37.0")
-    // implementation("org.seasar.doma:doma-core:2.37.0")
     implementation("org.springframework.security:spring-security-crypto:5.3.3.RELEASE")
-    kapt("org.seasar.doma:doma:2.29.0")
+
+    // implementation("org.seasar.doma:doma:2.29.0")
+    annotationProcessor("org.seasar.doma:doma-processor:2.37.0")
+    implementation("org.seasar.doma:doma-core:2.37.0")
+    // kapt("org.seasar.doma:doma:2.29.0")
+    // 以下試しに
+    runtime("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("mysql:mysql-connector-java:8.0.20")
 
     developmentOnly("io.micronaut:micronaut-runtime-osx:$micronautVersion")

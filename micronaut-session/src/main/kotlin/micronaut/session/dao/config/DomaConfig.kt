@@ -16,15 +16,13 @@ class DomaConfig(
     private val transactionManager: LocalTransactionManager
 ) : Config {
 
-    override fun getDialect(): Dialect {
-        return MysqlDialect()
-    }
+    override fun getDialect(): Dialect = MysqlDialect()
 
-    override fun getDataSource(): DataSource? {
+    override fun getDataSource(): DataSource {
         return dataSource
     }
 
-    override fun getTransactionManager(): TransactionManager? {
+    override fun getTransactionManager(): TransactionManager {
         return transactionManager
     }
 }

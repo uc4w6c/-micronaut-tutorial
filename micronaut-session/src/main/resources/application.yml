@@ -6,17 +6,25 @@ micronaut:
     redirect:
       login-success: /
       login-failure: /login/authFailed
-    # endpoints:
+      unauthorized:
+        url: /login/auth
+
+        # endpoints:
       # login:
         # enabled: true
         # path: /login/auth
 datasource:
-  driver-class-name: com.mysql.jdbc.Driver
-  # url: jdbc:mysql://localhost:3306/{DB_NAME}
-  # username: {USER_NAME}
-  # password: {PASSWORD}
-  url: jdbc:mysql://localhost:3306/testdb
-  username: test
-  password: test
-  port: 3307
-  # dialect: MySqlDialect
+  default:
+    # driver-class-name: 'com.mysql.jdbc.Driver'
+    driver-class-name: 'com.mysql.cj.jdbc.Driver'
+    # url: jdbc:mysql://localhost:3306/{DB_NAME}
+    # username: {USER_NAME}
+    # password: {PASSWORD}
+    # url: jdbc:mysql://localhost:3307/testdb
+    url: jdbc:mysql://127.0.0.1:3307/testdb
+    # url: jdbc:mysql://db:3306/testdb
+    username: test
+    password: test
+    # port: 3307
+    # dialect: MySqlDialect
+    # dialect: mysql
