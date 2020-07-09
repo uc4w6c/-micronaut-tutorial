@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        #if( $errors )
-            <title>Login Failed</title>
-        #else
-            <title>Login</title>
-        #end
+        <title th:if="${errors}">Login Failed</title>
+        <title th:unless="${loggedIn}">Login</title>
     </head>
 <body>
     <form action="/login" method="POST">
@@ -21,11 +18,9 @@
             <li>
                 <input type="submit" value="Login"/>
             </li>
-            #if( $errors )
-                <li id="errors">
-                    <span style="color: red;">Login Failed</span>
-                </li>
-            #end
+            <li th:if="${errors}" id="errors">
+                <span style="color: red;">Login Failed</span>
+            </li>
         </ol>
     </form>
 </body>
