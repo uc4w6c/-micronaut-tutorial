@@ -3,6 +3,7 @@
     <head>
         <title th:if="${errors}">Login Failed</title>
         <title th:unless="${loggedIn}">Login</title>
+        <meta charset="UTF-8"/>
     </head>
 <body>
     <form action="/login" method="POST">

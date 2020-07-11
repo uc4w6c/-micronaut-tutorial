@@ -3,6 +3,7 @@
     <head>
         <title>Home</title>
         <link th:href="@{/public/style.css}" type="text/css" rel="stylesheet" />
+        <meta charset="UTF-8"/>
     </head>
     <body>
         <h1 th:if="${loggedIn}">username: <span th:text="${username}"></span></h1>
@@ -11,5 +12,9 @@
             <input type="submit" value="Logout"/>
         </form>
         <p th:unless="${loggedIn}"><a href="/login/">Login</a></p>
+        <form action="next" method="GET">
+            <input type="text" name="message"/>
+            <input type="submit" value="Input"/>
+        </form>
     </body>
 </html>
