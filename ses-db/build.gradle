@@ -18,6 +18,7 @@ repositories {
 configurations {
     // for dependencies that are needed for development only
     developmentOnly
+    ktlint
 }
 
 dependencies {
@@ -45,6 +46,8 @@ dependencies {
 
     runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("com.h2database:h2:1.4.200")
+
+    ktlint "com.pinterest:ktlint:0.35.0"
 
     developmentOnly("io.micronaut:micronaut-runtime-osx:$micronautVersion")
     runtimeOnly("ch.qos.logback:logback-classic")
@@ -93,6 +96,24 @@ kapt {
         arg("micronaut.processing.group", "ses.db")
         arg("micronaut.processing.module", "sesDb")
     }
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args "src/**/*.kt"
+    // to generate report in checkstyle format prepend following args:
+    // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+    // see https://github.com/pinterest/ktlint#usage for more
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args "-F", "src/**/*.kt"
 }
 
 shadowJar {

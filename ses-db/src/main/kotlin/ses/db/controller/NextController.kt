@@ -15,8 +15,6 @@ import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import javax.validation.ConstraintViolationException
 import io.micronaut.http.annotation.Error
-import java.util.*
-
 
 @Secured(SecurityRule.IS_AUTHENTICATED)
 @Validated
@@ -35,6 +33,7 @@ class NextController(private val messageSource: MessageSource) {
     fun initFailed(request: HttpRequest<Map<String, Any>>,
                    ex: ConstraintViolationException): Map<String, Any> {
 
+        /*
         ex.constraintViolations.forEach { constraintViolation ->
             print(constraintViolation.message)
             print(" : ")
@@ -44,9 +43,10 @@ class NextController(private val messageSource: MessageSource) {
             print(" : ")
             print(constraintViolation.messageTemplate)
             print(" : ")
+            // propertyPathにはメソッドが格納される。
             print(constraintViolation.propertyPath)
             println()
-        }
+        }*/
 
         val responseMap = HashMap<String, Any>()
         responseMap["errors"] = ex.constraintViolations

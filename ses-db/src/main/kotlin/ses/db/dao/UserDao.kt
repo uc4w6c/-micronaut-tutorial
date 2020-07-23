@@ -13,4 +13,3 @@ interface UserDao {
     @Sql("select user_id, password from users where user_id = /* userName */'test'")
     fun findUser(userName: String): UserEntity
 }
-
