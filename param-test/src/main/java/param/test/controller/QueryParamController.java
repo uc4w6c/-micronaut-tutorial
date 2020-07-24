@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.QueryValue;
 import io.micronaut.http.annotation.RequestBean;
 import io.micronaut.validation.Validated;
 import param.test.controller.request.HelloRequest;
+import param.test.controller.request.QueryParamReq;
 import param.test.controller.response.HelloResponse;
 
 import javax.annotation.Nullable;
@@ -31,5 +32,11 @@ public class QueryParamController {
     @Get("/hello3")
     public String hello3(@NotBlank String name) {
         return name;
+    }
+
+    @Get("/hello4{?queryParamReq*}")
+    public String hello4(@NotBlank @RequestBean QueryParamReq queryParamReq) {
+        return queryParamReq.getFirstName().orElse("sei") + " " +
+               queryParamReq.getLastName().orElse("mei") + " さん";
     }
 }
